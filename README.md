@@ -1,4 +1,4 @@
-# bark-simple-webui
+# paints-undo-launcher
 Installer and launcher for [Paints-UNDO](https://github.com/lllyasviel/Paints-UNDO) on GNU/Linux system.
 
 # Usage
