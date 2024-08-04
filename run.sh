@@ -2,7 +2,8 @@
 
 ##### SET FOLLOWING VARS #####
 CONDA_DIR="/home/$USER/src/miniconda3"
-SERVER_NAME="192.168.0.187"
+SERVER_ADDR="192.168.0.187"
+SERVER_PORT=7862
 ###### END OF VARIABLES ######
 
 
@@ -46,10 +47,12 @@ if [ ! -d "$INSTALL_DIR" ]; then
     cd Paints-UNDO
     pip install xformers
     pip install -r requirements.txt
+    sed -i -e "s/server_name='0.0.0.0'/ /" gradio_app.py # need to remove this so we can set via env var below
 fi
 
 cd $SCRIPT_DIR/Paints-UNDO
 
 # launch
-export GRADIO_SERVER_NAME=$SERVER_NAME
+export GRADIO_SERVER_NAME=$SERVER_ADDR
+export GRADIO_SERVER_PORT=$SERVER_PORT
 python gradio_app.py
