@@ -48,6 +48,8 @@ if [ ! -d "$INSTALL_DIR" ]; then
     pip install -r requirements.txt
 fi
 
+cd $SCRIPT_DIR/Paints-UNDO
+
 # launch
 export GRADIO_SERVER_NAME=$SERVER_NAME
 python gradio_app.py
