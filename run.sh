@@ -55,4 +55,10 @@ cd $SCRIPT_DIR/Paints-UNDO
 # launch
 export GRADIO_SERVER_NAME=$SERVER_ADDR
 export GRADIO_SERVER_PORT=$SERVER_PORT
-python gradio_app.py
+if [ -n "${RUNNING_IN_SYSTEMD}" ]; then
+    echo "Running inside systemd"
+    python gradio_app.py 2>&1 | systemd-cat -t "paints-gradio"
+else
+    echo "Running outside systemd"
+    python gradio_app.py
+fi
